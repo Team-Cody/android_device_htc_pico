@@ -119,10 +119,6 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-# Dummy file, to keep the API happy. The default firmware does both modes
-    write /sys/module/bcmdhd/parameters/firmware_path ""
-    chmod 0666 /sys/module/bcmdhd/parameters/firmware_path
-
 service wpa_supplicant /system/bin/wpa_supplicant \
     -Dnl80211 -eth0 -e/data/misc/wifi/entropy.bin \
     -c/data/misc/wifi/wpa_supplicant.conf
@@ -165,13 +161,9 @@ service iprenew_p2p /system/bin/dhcpcd -n
 
 service hostapd /system/bin/hostapd /data/misc/wifi/hostapd.conf
     socket hostapd_eth0 dgram 0660 wifi wifi
-    class late_start
-    user root
-#    group wifi inet
-    group root 
+    group wifi inet
     oneshot
     disabled
-
 
     # bugreport is triggered by the KEY_VOLUMEUP and BTN_MOUSE keycodes
 service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport

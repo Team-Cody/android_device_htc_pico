@@ -41,7 +41,8 @@ PRODUCT_PACKAGES += \
     audio_policy.msm7x27a \
     audio.a2dp.default \
     audio_policy.conf \
-    libaudioutils
+    libaudioutils \
+    audio.usb.default
 
 # Other
 PRODUCT_PACKAGES += \
@@ -53,7 +54,7 @@ PRODUCT_PACKAGES += \
        
 # Camera
 PRODUCT_PACKAGES += \
-    camera.default \
+    camera.default
 #    LegacyCamera
     
 # Misc
