@@ -33,6 +33,14 @@ ro.ril.htcmaskw1 = 14449
 ro.ril.update.acoustic.table = 1
 ro.ril.avoid.pdp.overlap = 1
 ro.telephony.default_network = 0
+ro.ril.enable.sdr=1
+ro.ril.enable.amr.wideband=1
+ro.ril.enable.r8fd=0
+ro.ril.enable.pre_r8fd=1
+ro.ril.fd.pre_r8_tout.scr_off=2
+ro.ril.fd.pre_r8_tout.scr_on=3
+ro.ril.fd.r8_tout.scr_off=0
+ro.ril.fd.r8_tout.scr_on=0
  
 # Time between scans in seconds. Keep it high to minimize battery drain.
 # This only affects the case in which there are remembered access points,
@@ -66,9 +74,10 @@ ro.media.dec.jpeg.memcap = 20000000
 ro.vendor.extension_library=/system/lib/libqc-opt.so
  
 # Misc.
-htc.audio.alc.enable= 1
+htc.audio.alc.enable   = 1
 htc.audio.swalt.enable = 1
 dalvik.vm.heapsize=48m
+ro.opengles.version = 131072
 debug.composition.7x27A.type=mdp
 ro.use_data_netmgrd=true
 persist.data.ds_fmc_app.mode=0
@@ -77,31 +86,23 @@ ro.max.fling_velocity=4000
 httplive.enable.discontinuity=true
 dev.pm.dyn_samplingrate=1
 dev.pm.dyn_sample_period=700000
-ro.ril.disable.power.collapse=0
-ro.HOME_APP_ADJ=1
-ro.PERCEPTIBLE_APP_ADJ=0
-ro.kernel.android.checkjni=0
-dalvik.vm.verify-bytecode=false
 com.qc.hardware=true
 com.qc.hdmi_out=false
 debug.camcorder.disablemeta=0
 debug.qctwa.statusbar=1
 debug.qctwa.preservebuf=1
+debug.gr.numframebuffers=3
+debug.qc.hardware=true
 debug.enabletr=false
+debug.hwui.render_dirty_regions=false
 debug.sf.hw=1
 ro.media.enc.jpeg.quality=100
 ro.setupwizard.mode=OPTIONAL
-mot.proximity.delay=10
-debug.composition.type=mdp
-debug.gr.numframebuffers=2
-ro.media.dec.aud.wma.enabled=1
-ro.media.dec.vid.wmv.enabled=1
+ro.setupwizard.enable_bypass=1
 ro.config.sync=yes
 ro.phone_storage=0
 ro.hw_plat=7x27a
-
-# Hwui
-hwui.use.blacklist=true
-hwui.print_config=choice
-hwui.disable_vsync=true
-hwui.render_dirty_regions=false
+ro.HOME_APP_ADJ=1
+ro.PERCEPTIBLE_APP_ADJ=0
+dalvik.vm.verify-bytecode=false
+sys.mem.max_hidden_apps=3
