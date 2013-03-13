@@ -123,13 +123,13 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 
 # Publish that we support the live wallpaper feature.
 PRODUCT_COPY_FILES += \
-    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml \
+    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
  
 PRODUCT_PACKAGES += \
     LiveWallpapers \
     LiveWallpapersPicker \
     VisualizationWallpapers \
-    librs_jni \
+    librs_jni
 
 # Releasetools
 PRODUCT_COPY_FILES += \
