@@ -101,3 +101,5 @@ LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH  := $(TARGET_OUT_ETC)
 LOCAL_SRC_FILES    := audio_policy.conf
 include $(BUILD_PREBUILT)
+
+endif
