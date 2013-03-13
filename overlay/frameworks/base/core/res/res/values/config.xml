@@ -215,6 +215,9 @@
                   Bluetooth Module -->
     <bool name="config_bluetooth_adapter_quick_switch">false</bool>
 
+    <!-- Boolean indicating whether Softap requires reloading AP firmware -->
+    <bool name="config_wifiApFirmwareReload">false</bool>
+
     <bool name="config_autoBrightnessButtonKeyboard">false</bool>
 
 </resources>
