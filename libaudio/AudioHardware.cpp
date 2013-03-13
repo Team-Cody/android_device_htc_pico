@@ -159,7 +159,7 @@ AudioHardware::AudioHardware() :
            audpp_filter_inited = true;
    }
 
-    int (*set_acoustic_parameters)();
+int (*set_acoustic_parameters)();
   
     acoustic = ::dlopen("/system/lib/libhtc_acoustic.so", RTLD_NOW);
     if (acoustic == NULL ) {
@@ -175,7 +175,7 @@ AudioHardware::AudioHardware() :
     if (rc < 0) {
         ALOGE("Could not set acoustic parameters to share memory: %d", rc);
     }
-    
+
     m7xsnddriverfd = open("/dev/msm_snd", O_RDWR);
     if (m7xsnddriverfd >= 0) {
         int rc = ioctl(m7xsnddriverfd, SND_GET_NUM_ENDPOINTS, &mNumSndEndpoints);
@@ -195,7 +195,7 @@ AudioHardware::AudioHardware() :
                 CHECK_FOR(BT);
                 CHECK_FOR(BT_EC_OFF);
                 CHECK_FOR(HEADSET);
-		CHECK_FOR(NO_MIC_HEADSET);
+                CHECK_FOR(NO_MIC_HEADSET);
                 CHECK_FOR(STEREO_HEADSET_AND_SPEAKER);
                 CHECK_FOR(IN_S_SADC_OUT_HANDSET);
                 CHECK_FOR(IN_S_SADC_OUT_SPEAKER_PHONE);
@@ -1182,6 +1182,10 @@ static int msm72xx_enable_postproc(bool state)
     property_get("audio.legacy.postproc",postProc,"0");
 
     if(!(strcmp("true",postProc) == 0)){
+        post_proc_feature_mask &= MBADRC_DISABLE;
+        post_proc_feature_mask &= ADRC_DISABLE;
+        post_proc_feature_mask &= EQ_DISABLE;
+        post_proc_feature_mask &= RX_IIR_DISABLE;
         ALOGV("Legacy Post Proc disabled.");
         return 0;
     }
@@ -1189,10 +1193,18 @@ static int msm72xx_enable_postproc(bool state)
     if (!audpp_filter_inited)
     {
         ALOGE("Parsing error in AudioFilter.csv.");
+        post_proc_feature_mask &= MBADRC_DISABLE;
+        post_proc_feature_mask &= ADRC_DISABLE;
+        post_proc_feature_mask &= EQ_DISABLE;
+        post_proc_feature_mask &= RX_IIR_DISABLE;
         return -EINVAL;
     }
     if(snd_device < 0) {
         ALOGE("Enabling/Disabling post proc features for device: %d", snd_device);
+        post_proc_feature_mask &= MBADRC_DISABLE;
+        post_proc_feature_mask &= ADRC_DISABLE;
+        post_proc_feature_mask &= EQ_DISABLE;
+        post_proc_feature_mask &= RX_IIR_DISABLE;
         return -EINVAL;
     }
 
@@ -1320,7 +1332,7 @@ static int msm72xx_enable_postproc(bool state)
         }
    }
 
-   close(fd);*/
+   close(fd); */
    return 0;
 }
 
@@ -1410,7 +1422,7 @@ status_t AudioHardware::setVoiceVolume(float v)
         ALOGW("setVoiceVolume(%f) over 1.0, assuming 1.0\n", v);
         v = 1.0;
     }
-    
+
     if(v < 0.4)
       v = 0.4;
 
@@ -1703,9 +1715,9 @@ status_t AudioHardware::doRouting(AudioStreamInMSM72xx *input)
             ALOGI("Routing audio to Wired Headset\n");
             new_snd_device = SND_DEVICE_HEADSET;
             new_post_proc_feature_mask = (ADRC_ENABLE | EQ_ENABLE | RX_IIR_ENABLE | MBADRC_ENABLE);
-	} else if (outputDevices & AudioSystem::DEVICE_OUT_WIRED_HEADPHONE){
-	    ALOGI("Routing audio to No microphone Wired Headset (%d,%x)\n", mMode, outputDevices);
-	    new_snd_device = SND_DEVICE_NO_MIC_HEADSET;
+        } else if (outputDevices & AudioSystem::DEVICE_OUT_WIRED_HEADPHONE) {
+            ALOGI("Routing audio to No microphone Wired Headset (%d,%x)\n", mMode, outputDevices);
+            new_snd_device = SND_DEVICE_NO_MIC_HEADSET;
         } else if (outputDevices & AudioSystem::DEVICE_OUT_SPEAKER) {
             ALOGI("Routing audio to Speakerphone\n");
             new_snd_device = SND_DEVICE_SPEAKER;

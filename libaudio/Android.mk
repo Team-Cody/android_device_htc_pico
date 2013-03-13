@@ -11,6 +11,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := \
     AudioHardware.cpp \
     audio_hw_hal.cpp \
+    HardwarePinSwitching.c
 
 ifeq ($(BOARD_HAVE_BLUETOOTH),true)
   LOCAL_CFLAGS += -DWITH_A2DP
@@ -18,6 +19,7 @@ endif
 
 ifeq ($(BOARD_HAVE_QCOM_FM),true)
   LOCAL_CFLAGS += -DWITH_QCOM_FM
+  LOCAL_CFLAGS += -DQCOM_FM_ENABLED
 endif
 
 ifeq ($(call is-android-codename-in-list,ICECREAM_SANDWICH),true)
@@ -99,5 +101,3 @@ LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH  := $(TARGET_OUT_ETC)
 LOCAL_SRC_FILES    := audio_policy.conf
 include $(BUILD_PREBUILT)
-
-endif
