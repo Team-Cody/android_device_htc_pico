@@ -4,7 +4,6 @@ lib/libvideoeditor_jni.so
 lib/libvideoeditorplayer.so
 
 # CM Wallpapers (7MB)
-app/CMWallpapers.apk
 app/CMUpdater.apk
 
 # Live Wallpapers (2.11MB)
@@ -12,27 +11,6 @@ app/LiveWallpapers.apk
 app/MagicSmokeWallpapers.apk
 app/Galaxy4.apk
 app/PhaseBeam.apk
-
-# Fonts (11.9MB)
-fonts/DroidSansArmenian.ttf
-fonts/DroidSansEthiopic-Regular.ttf
-fonts/DroidSansGeorgian.ttf
-fonts/DroidSansHebrew-Bold.ttf
-fonts/DroidSansHebrew-Regular.ttf
-fonts/DroidSansThai.ttf
-fonts/MTLmr3m.ttf
-fonts/NanumGothic.ttf
-fonts/NanumGothicBold.ttf
-
-# Pico TTS Language Files (5MB)
-tts/lang_pico/de-DE_gl0_sg.bin
-tts/lang_pico/es-ES_ta.bin
-tts/lang_pico/fr-FR_nk0_sg.bin
-tts/lang_pico/it-IT_cm0_sg.bin
-tts/lang_pico/de-DE_ta.bin
-tts/lang_pico/es-ES_zl0_sg.bin
-tts/lang_pico/fr-FR_ta.bin
-tts/lang_pico/it-IT_ta.bin
 
 # Ringtones (5.85MB)
 media/audio/ringtones/Acheron.ogg
