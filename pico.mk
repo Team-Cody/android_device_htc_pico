@@ -219,12 +219,15 @@ PRODUCT_COPY_FILES += \
     device/htc/pico/prebuilt/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl
     
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.product.camera=pico \
+    ro.com.google.locationfeatures=1 \
+    ro.com.google.networklocation=1 \
+    ro.com.google.gmsversion=2.3_r3 \
     dalvik.vm.lockprof.threshold=500 \
+    ro.setupwizard.enable_bypass=1 \
     ro.telephony.call_ring.multiple=false \
     persist.sys.use_dithering=1 \
     ro.vold.umsdirtyratio=50
-       
+
 PRODUCT_AAPT_CONFIG := normal mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
