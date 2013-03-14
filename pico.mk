@@ -179,7 +179,7 @@ PRODUCT_COPY_FILES += \
 
 # RIL
 PRODUCT_COPY_FILES += \
-    vendor/htc/pico/proprietary/lib/libhtc_ril.so:system/lib/libhtc_ril.so \
+    device/htc/pico/prebuilt/lib/libhtc_ril.so:system/lib/libhtc_ril.so \
     device/htc/pico/prebuilt/lib/libqc-opt.so:system/lib/libqc-opt.so
     
 # Audio DSP Profiles
