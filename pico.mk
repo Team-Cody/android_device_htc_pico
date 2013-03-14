@@ -221,7 +221,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.product.camera=pico \
     dalvik.vm.lockprof.threshold=500 \
-    dalvik.vm.dexopt-flags=m=y \
     ro.telephony.call_ring.multiple=false \
     persist.sys.use_dithering=1 \
     ro.vold.umsdirtyratio=50

@@ -78,8 +78,20 @@ ro.vendor.extension_library=/system/lib/libqc-opt.so
 htc.audio.alc.enable   = 1
 htc.audio.swalt.enable = 1
 
-# Misc Properties
+# Dalvik
+dalvik.vm.checkjni=0
+dalvik.vm.dexopt-data-only=1
+dalvik.vm.dexopt-flags=v=a,o=v,m=y,u=y
+dalvik.vm.execution-mode=int:jit
+dalvik.vm.verify-bytecode=false
 dalvik.vm.heapsize=48m
+
+# Memory
+ro.zram.default=0
+persist.sys.purgeable_assets=1
+sys.mem.max_hidden_apps=3
+
+# Graphics & Misc Properties
 debug.composition.7x27A.type=mdp
 ro.use_data_netmgrd=true
 persist.data.ds_fmc_app.mode=0
@@ -99,5 +111,3 @@ debug.enabletr=false
 debug.hwui.render_dirty_regions=false
 debug.sf.hw=1
 ro.hw_plat=7x27a
-dalvik.vm.verify-bytecode=false
-sys.mem.max_hidden_apps=3
