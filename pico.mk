@@ -55,7 +55,6 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     camera.default
-#    LegacyCamera
     
 # Misc
 PRODUCT_PACKAGES += \
@@ -101,19 +100,15 @@ PRODUCT_COPY_FILES += \
     vendor/htc/pico/proprietary/bin/mm-qcamera-daemon:system/bin/mm-qcamera-daemon \
     device/htc/pico/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     device/htc/pico/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml
-
-# Prebuilt libraries that are needed to build open-source libraries
-PRODUCT_COPY_FILES += \
-    device/htc/pico/prebuilt/lib/libqc-opt.so:obj/lib/libqc-opt.so
     
 # OMX
 PRODUCT_COPY_FILES += \
-    vendor/htc/pico/proprietary/lib/libmm-adspsvc.so:system/lib/libmm-adspsvc.so \
+    device/htc/pico/prebuilt/lib/libmm-adspsvc.so:system/lib/libmm-adspsvc.so \
     vendor/htc/pico/proprietary/lib/libmmosal.so:system/lib/libmmosal.so \
     vendor/htc/pico/proprietary/lib/libmmparser.so:system/lib/libmmparser.so \
-    vendor/htc/pico/proprietary/lib/libOmxH264Dec.so:system/lib/libOmxH264Dec.so \
-    vendor/htc/pico/proprietary/lib/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \
-    vendor/htc/pico/proprietary/lib/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \
+    device/htc/pico/prebuilt/lib/libOmxH264Dec.so:system/lib/libOmxH264Dec.so \
+    device/htc/pico/prebuilt/lib/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \
+    device/htc/pico/prebuilt/lib/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \
     vendor/htc/pico/proprietary/lib/libmmparser_divxdrmlib.so:system/lib/libmmparser_divxdrmlib.so \
     vendor/htc/pico/proprietary/lib/libdivxdrmdecrypt.so:system/lib/libdivxdrmdecrypt.so
     
@@ -134,11 +129,11 @@ PRODUCT_PACKAGES += \
 
 # Releasetools
 PRODUCT_COPY_FILES += \
-     device/htc/pico/releasetools/extras.sh:system/bin/extras.sh \
+     device/htc/pico/releasetools/extras.sh:system/bin/extras.sh
 
 # Vold 
 PRODUCT_COPY_FILES += \
-    device/htc/pico/files/etc/vold.fstab:system/etc/vold.fstab \
+    device/htc/pico/files/etc/vold.fstab:system/etc/vold.fstab
     
 # Wifi
 PRODUCT_COPY_FILES += \
@@ -164,7 +159,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/htc/pico/proprietary/lib/hw/sensors.pico.so:system/lib/hw/sensors.pico.so \
 
-# 3D(ICS Blobs)
+# 3D(Early JB Blobs)
 PRODUCT_COPY_FILES += \
     vendor/htc/pico/proprietary/etc/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
     vendor/htc/pico/proprietary/etc/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw \
@@ -181,12 +176,11 @@ PRODUCT_COPY_FILES += \
     vendor/htc/pico/proprietary/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
     vendor/htc/pico/proprietary/lib/egl/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \
     vendor/htc/pico/proprietary/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so
-    
-    
+
 # RIL
 PRODUCT_COPY_FILES += \
     vendor/htc/pico/proprietary/lib/libhtc_ril.so:system/lib/libhtc_ril.so \
-    vendor/htc/pico/proprietary/lib/libqc-opt.so:system/lib/libqc-opt.so
+    device/htc/pico/prebuilt/lib/libqc-opt.so:system/lib/libqc-opt.so
     
 # Audio DSP Profiles
 PRODUCT_COPY_FILES += \
