@@ -150,6 +150,7 @@ COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DREFRESH_RATE=65 -DQCOM_NO_SECURE_PLAYB
 
 TARGET_GLOBAL_CFLAGS   += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_EXTRA_CFLAGS += $(call cc-option,-march=armv7-a -mtune=cortex-a8)
 
 # Touch screen compatibility for JB
 BOARD_USE_LEGACY_TOUCHSCREEN := true
