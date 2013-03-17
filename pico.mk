@@ -219,7 +219,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.lockprof.threshold=500 \
     ro.setupwizard.enable_bypass=1 \
     ro.telephony.call_ring.multiple=false \
-    persist.sys.use_dithering=1 \
+    persist.sys.use_dithering=2 \
     ro.vold.umsdirtyratio=50
 
 PRODUCT_AAPT_CONFIG := normal mdpi

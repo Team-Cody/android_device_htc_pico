@@ -140,9 +140,6 @@ COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 
 # Add h/w acceleration in browser :)
 ENABLE_WEBGL := true
-WITH_JIT := true
-ENABLE_JSC_JIT := true
-JS_ENGINE := v8
 HTTP := chrome
 BOARD_USE_QCOM_LLVM_CLANG_RS := true
 
