@@ -30,16 +30,16 @@ import android.util.Log;
  * piggybacked in RIL_UNSOL_RESPONSE_RADIO_STATE_CHANGED. Instead,
  * these radios will send radio state and we have to query for SIM
  * status separately.
- * Custom Qualcomm No SimReady RIL for Sony
+ * Custom Qualcomm No SimReady RIL for HTC
  *
  * {@hide}
  */
 
-public class SonyQualcommRIL7x27a extends QualcommSharedRIL implements CommandsInterface {
+public class HTCQualcommRIL7x27a extends QualcommSharedRIL implements CommandsInterface {
     boolean RILJ_LOGV = true;
     boolean RILJ_LOGD = true;
 
-    public SonyQualcommRIL7x27a(Context context, int networkMode, int cdmaSubscription) {
+    public HTCQualcommRIL7x27a(Context context, int networkMode, int cdmaSubscription) {
         super(context, networkMode, cdmaSubscription);
     }
 
