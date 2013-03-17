@@ -131,7 +131,7 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 # RIL
 BOARD_USE_NEW_LIBRIL_HTC := true
 BOARD_USES_LEGACY_RIL := true
-BOARD_RIL_CLASS := ../../../device/htc/pico/libril/
+BOARD_RIL_CLASS := ../../../device/htc/pico/ril/
 
 # Camera
 BOARD_NEEDS_MEMORYHEAPPMEM := true
