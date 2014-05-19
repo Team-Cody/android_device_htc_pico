@@ -170,6 +170,7 @@ on fs
 	mount yaffs2 mtd@cache /cache nosuid nodev
     # mount partitions
     mount_all /fstab.pico
+	swapon_all /fstab.pico
     
     # Enable low memory killer to check file pages
     write /sys/module/lowmemorykiller/parameters/minfile 0,0,0,5120,5632,6144
@@ -180,9 +181,18 @@ on fs
     chmod 755 /data/system/appwidgets.xml
     chmod 755 /data/system/entropy.dat
     chmod 755 /data/system/wallpaper_info.xml
+	
+	## zRAM
+    write /proc/sys/vm/page-cluster 0
     
     # enable the GPS
     setprop ro.ril.def.agps.mode 2
+	
+    # sweep2wake and doubletap2wake toggle permissions
+    chown system system /sys/android_touch/s2wswitch
+    chmod 0664 /sys/android_touch/s2wswitch
+    chown system system /sys/android_touch/dt2wswitch
+    chmod 0664 /sys/android_touch/dt2wswitch
 
     # performance tweaks for flash
     write /sys/block/mtdblock3/bdi/read_ahead_kb 4
@@ -288,6 +298,31 @@ service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
     group root
     oneshot
     disabled
+	
+# Off-mode charging
+service charging /system/bin/charging
+    class main
+    user root
+    group root
+    disabled
+    oneshot
+
+service zchgd_offmode /system/bin/zchgd -pseudooffmode
+    class main
+    user root
+    group root graphics
+    disabled
+
+service zchgd_onmode /system/bin/zchgd -onmode
+    class main
+    user root
+    group root graphics
+
+on property:dev.zcharge=true
+    start zchgd_onmode
+
+on property:dev.zcharge=false
+    stop zchgd_onmode	
 
 on property:ro.fuse_sdcard=true
    start sdcard
