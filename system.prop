@@ -34,8 +34,8 @@ ro.ril.set.mtu1472 = 1
 # This only affects the case in which there are remembered access points,
 # but none are in range.
 wifi.supplicant_scan_interval=180
-wifi.interface=eth0
-wifi.softap.interface=eth0
+wifi.interface=wlan0
+wifi.softap.interface=wlan0
 
 # density in DPI of the LCD of this board. This is used to scale the UI
 # appropriately. If this property is not defined, the default value is 160 dpi.
@@ -70,6 +70,7 @@ htc.audio.swalt.enable = 1
 
 # Display
 ro.hw_plat=7x27a
+ro.bq.gpu_to_cpu_unsupported=1
 ro.max.fling_velocity=4000
 com.qc.hdmi_out=false
 debug.qctwa.statusbar=1
@@ -78,9 +79,11 @@ debug.gr.numframebuffers=3
 debug.qc.hardware=true
 debug.enabletr=false
 debug.hwui.render_dirty_regions=false
-debug.sf.hw=1
-debug.hwc.dynThreshold=1.9
+debug.hwc.dynThreshold=1.91
 debug.fb.rgb565=0
+ro.zygote.disable_gl_preload=true
+debug.egl.recordable.rgba8888=1
+debug.gralloc.map_fb_memory=1
 
 # Video Acceleration
 video.accelerate.hw=1
@@ -89,8 +92,8 @@ debug.performance.tuning=1
 # Low Power Audio
 lpa.decode=false
 audio.decoder_override_check=true
-use.non-omx.mp3.decoder=true
-use.non-omx.aac.decoder=true
+use.non-omx.mp3.decoder=false
+use.non-omx.aac.decoder=false
 
 # Media
 ro.media.enc.jpeg.quality=100
@@ -103,9 +106,9 @@ media.stagefright.enable-qcp=true
 media.stagefright.enable-meta=false
 
 # Dalvik
-dalvik.vm.heapsize=48m
+dalvik.vm.heapsize=64m
 ro.zram.default=0
-ro.sys.fw.bg_apps_limit=7
+ro.sys.fw.bg_apps_limit=4
 sys.mem.max_hidden_apps=7
 dalvik.vm.checkjni=0
 dalvik.vm.checkjni=false
@@ -116,7 +119,6 @@ dalvik.vm.verify-bytecode=false
 dalvik.vm.lockprof.threshold=500
 dalvik.vm.heaptargetutilization=0.25
 dalvik.vm.debug.alloc=0
-dalvik.vm.jit.codecachesize=0
 
 # Misc
 ro.use_data_netmgrd=true
@@ -129,5 +131,4 @@ ro.android.secure=0
 ro.fuse_sdcard=true
 persist.sys.strictmode.visual=0
 persist.sys.strictmode.disable=1
-ro.bq.gpu_to_cpu_unsupported=true
-
+persist.webview.provider=classic

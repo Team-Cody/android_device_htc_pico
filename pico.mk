@@ -20,16 +20,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/locales_full.mk)
 
-# Install/Uninstall google apps
-# $(call inherit-product, vendor/google/gapps_armv6_tiny.mk)
-
 DEVICE_PACKAGE_OVERLAYS += device/htc/pico/overlay
 
 # Graphics 
 PRODUCT_PACKAGES += \
     copybit.msm7x27a \
     gralloc.msm7x27a \
-    hwcomposer.msm7x27a \
+    memtrack.msm7x27a \
     libgenlock \
     liboverlay \
     libtilerenderer \
@@ -51,6 +48,7 @@ PRODUCT_PACKAGES += \
     gps.msm7x27a \
     librpc \
     power.msm7x27a \
+    libhealthd.msm7x27a \
     com.android.future.usb.accessory \
     libnetcmdiface \
     HwaSettings
@@ -139,16 +137,14 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 PRODUCT_COPY_FILES += \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml 
 
-# WiFi
+# Wifi
 PRODUCT_COPY_FILES += \
+    device/htc/pico/prebuilt/etc/firmware/fw_bcmdhd.bin:system/etc/firmware/fw_bcmdhd.bin \
+    device/htc/pico/prebuilt/etc/firmware/fw_bcmdhd_apsta.bin:system/etc/firmware/fw_bcmdhd_apsta.bin \
     device/htc/pico/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/htc/pico/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/htc/pico/prebuilt/etc/dhcpd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     device/htc/pico/prebuilt/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    device/htc/pico/prebuilt/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    device/htc/pico/prebuilt/etc/firmware/fw_bcm4330_b2.bin:system/etc/firmware/fw_bcm4330_b2.bin \
-    device/htc/pico/prebuilt/etc/firmware/fw_bcm4330_apsta_b2.bin:system/etc/firmware/fw_bcm4330_apsta_b2.bin \
-    device/htc/pico/prebuilt/etc/firmware/fw_bcm4330_p2p_b2.bin:system/etc/firmware/fw_bcm4330_p2p_b2.bin \
-    device/htc/pico/prebuilt/etc/dhcpd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
+    device/htc/pico/prebuilt/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
     
 # Audio
 PRODUCT_COPY_FILES += \
@@ -177,16 +173,17 @@ PRODUCT_COPY_FILES += \
     device/htc/pico/prebuilt/etc/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
     device/htc/pico/prebuilt/etc/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
     vendor/htc/pico/proprietary/lib/libgsl.so:system/lib/libgsl.so \
+    vendor/htc/pico/proprietary/lib/libOpenCL.so:system/lib/libOpenCL.so \
     vendor/htc/pico/proprietary/lib/libOpenVG.so:system/lib/libOpenVG.so \
     vendor/htc/pico/proprietary/lib/libsc-a2xx.so:system/lib/libsc-a2xx.so \
     vendor/htc/pico/proprietary/lib/libC2D2.so:system/lib/libC2D2.so \
     vendor/htc/pico/proprietary/lib/libc2d2_z180.so:system/lib/libc2d2_z180.so \
-    vendor/htc/pico/proprietary/lib/egl/libGLESv2S3D_adreno200.so:system/lib/egl/libGLESv2S3D_adreno200.so \
     vendor/htc/pico/proprietary/lib/egl/eglsubAndroid.so:system/lib/egl/eglsubAndroid.so \
     vendor/htc/pico/proprietary/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
     vendor/htc/pico/proprietary/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
     vendor/htc/pico/proprietary/lib/egl/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \
-    vendor/htc/pico/proprietary/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so 
+    vendor/htc/pico/proprietary/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so \
+    vendor/htc/pico/proprietary/lib/egl/libplayback_adreno200.so:system/lib/egl/libplayback_adreno200.so
     
 # RIL
 PRODUCT_COPY_FILES += \
@@ -213,35 +210,6 @@ PRODUCT_COPY_FILES += \
     device/htc/pico/prebuilt/bin/bma150_usr:system/bin/bma150_usr \
     device/htc/pico/prebuilt/bin/htc_ebdlogd:system/bin/htc_ebdlogd \
     device/htc/pico/prebuilt/bin/logcat2:system/bin/logcat2 \
-    vendor/htc/pico/proprietary/bin/charging:system/bin/charging \
-    vendor/htc/pico/proprietary/bin/zchgd:system/bin/zchgd
-
-# charger images
-PRODUCT_COPY_FILES += \
-    vendor/htc/pico/proprietary/media/zchgd/batt_0.rle:system/media/zchgd/batt_0.rle \
-    vendor/htc/pico/proprietary/media/zchgd/batt_100.rle:system/media/zchgd/batt_100.rle \
-    vendor/htc/pico/proprietary/media/zchgd/batt_10.rle:system/media/zchgd/batt_10.rle \
-    vendor/htc/pico/proprietary/media/zchgd/batt_20.rle:system/media/zchgd/batt_20.rle \
-    vendor/htc/pico/proprietary/media/zchgd/batt_30.rle:system/media/zchgd/batt_30.rle \
-    vendor/htc/pico/proprietary/media/zchgd/batt_40.rle:system/media/zchgd/batt_40.rle \
-    vendor/htc/pico/proprietary/media/zchgd/batt_50.rle:system/media/zchgd/batt_50.rle \
-    vendor/htc/pico/proprietary/media/zchgd/batt_5.rle:system/media/zchgd/batt_5.rle \
-    vendor/htc/pico/proprietary/media/zchgd/batt_60.rle:system/media/zchgd/batt_60.rle \
-    vendor/htc/pico/proprietary/media/zchgd/batt_70.rle:system/media/zchgd/batt_70.rle \
-    vendor/htc/pico/proprietary/media/zchgd/batt_80.rle:system/media/zchgd/batt_80.rle \
-    vendor/htc/pico/proprietary/media/zchgd/batt_90.rle:system/media/zchgd/batt_90.rle \
-    vendor/htc/pico/proprietary/media/zchgd/batt_95.rle:system/media/zchgd/batt_95.rle \
-    vendor/htc/pico/proprietary/media/zchgd/charging_00.rle:system/media/zchgd/charging_00.rle \
-    vendor/htc/pico/proprietary/media/zchgd/charging_01.rle:system/media/zchgd/charging_01.rle \
-    vendor/htc/pico/proprietary/media/zchgd/charging_02.rle:system/media/zchgd/charging_02.rle \
-    vendor/htc/pico/proprietary/media/zchgd/charging_03.rle:system/media/zchgd/charging_03.rle \
-    vendor/htc/pico/proprietary/media/zchgd/charging_04.rle:system/media/zchgd/charging_04.rle \
-    vendor/htc/pico/proprietary/media/zchgd/charging_05.rle:system/media/zchgd/charging_05.rle \
-    vendor/htc/pico/proprietary/media/zchgd/charging_06.rle:system/media/zchgd/charging_06.rle \
-    vendor/htc/pico/proprietary/media/zchgd/charging_07.rle:system/media/zchgd/charging_07.rle \
-    vendor/htc/pico/proprietary/media/zchgd/charging_08.rle:system/media/zchgd/charging_08.rle \
-    vendor/htc/pico/proprietary/media/zchgd/charging_09.rle:system/media/zchgd/charging_09.rle \
-    vendor/htc/pico/proprietary/media/zchgd/error.rle:system/media/zchgd/error.rle
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -267,7 +235,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.purgeable_assets=1 \
     ro.telephony.call_ring.delay=3000 \
     ro.config.low_ram=true \
-    persist.webview.provider=classic
+    dalvik.vm.dexopt-flags=v=a,o=v,m=y,u=y \
+    dalvik.vm.heapstartsize=5m \
+    dalvik.vm.heapgrowthlimit=48m \
+    dalvik.vm.heapsize=64m \
+    dalvik.vm.heaptargetutilization=0.25 \
+    dalvik.vm.heapminfree=512k \
+    dalvik.vm.heapmaxfree=2m
 
 PRODUCT_AAPT_CONFIG := normal mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
