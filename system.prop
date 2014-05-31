@@ -69,13 +69,9 @@ htc.audio.alc.enable = 1
 htc.audio.swalt.enable = 1
 
 # Display
-debug.composition.7x25A.type=mdp
-debug.composition.type=mdp
 ro.hw_plat=7x27a
-ro.bq.gpu_to_cpu_unsupported=1
 ro.max.fling_velocity=4000
 com.qc.hdmi_out=false
-debug.camcorder.disablemeta=1
 debug.qctwa.statusbar=1
 debug.qctwa.preservebuf=1
 debug.gr.numframebuffers=3
@@ -120,6 +116,7 @@ dalvik.vm.verify-bytecode=false
 dalvik.vm.lockprof.threshold=500
 dalvik.vm.heaptargetutilization=0.25
 dalvik.vm.debug.alloc=0
+dalvik.vm.jit.codecachesize=0
 
 # Misc
 ro.use_data_netmgrd=true
@@ -129,8 +126,8 @@ ro.config.sync=yes
 ro.phone_storage=0
 ro.kernel.android.checkjni=0
 ro.android.secure=0
+ro.fuse_sdcard=true
+persist.sys.strictmode.visual=0
+persist.sys.strictmode.disable=1
+ro.bq.gpu_to_cpu_unsupported=true
 
-# Goo.im
-ro.goo.developerid=joilaroi
-ro.goo.rom=CM102pico
-ro.goo.version=6
