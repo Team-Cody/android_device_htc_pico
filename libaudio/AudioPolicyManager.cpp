@@ -254,14 +254,6 @@ audio_devices_t AudioPolicyManager::getDeviceForStrategy(routing_strategy strate
          }
       }
 #endif
-// Do not play media stream if in call and the requested device would change the hardware
-// output routing
-     if (mPhoneState == AudioSystem::MODE_IN_CALL &&
-         !AudioSystem::isA2dpDevice((AudioSystem::audio_devices)device) &&
-         device != getDeviceForStrategy(STRATEGY_PHONE)) {
-         device = getDeviceForStrategy(STRATEGY_PHONE);
-         ALOGV("getDeviceForStrategy() incompatible media and phone devices");
-  }
       if (device == 0) {
         ALOGE("getDeviceForStrategy() no device found for STRATEGY_MEDIA");
       }
@@ -531,6 +523,10 @@ void AudioPolicyManager::setForceUse(AudioSystem::force_use usage, AudioSystem::
             return;
         }
         mForceUse[usage] = config;
+        {
+            audio_devices_t device = getDeviceForStrategy(STRATEGY_MEDIA);
+            setOutputDevice(mPrimaryOutput, device);
+        }
         break;
     case AudioSystem::FOR_RECORD:
         if (config != AudioSystem::FORCE_BT_SCO && config != AudioSystem::FORCE_WIRED_ACCESSORY &&

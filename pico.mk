@@ -31,18 +31,13 @@ PRODUCT_PACKAGES += \
     copybit.msm7x27a \
     gralloc.msm7x27a \
     hwcomposer.msm7x27a \
-    libtilerenderer \
-    libQcomUI \
-    liboverlay
+    libtilerenderer
     
 # Audio
 PRODUCT_PACKAGES += \
-    audio.primary.msm7x27a \
-    audio_policy.msm7x27a \
     audio.a2dp.default \
     audio_policy.conf \
-    libaudioutils \
-    audio.usb.default
+    libaudioutils
 
 # Other
 PRODUCT_PACKAGES += \
@@ -50,15 +45,16 @@ PRODUCT_PACKAGES += \
     lights.pico \
     sensors.msm7x27a \
     gps.pico \
-    power.msm7x27a
-       
+    power.pico
+    
 # Camera
 PRODUCT_PACKAGES += \
-    camera.default
+    camera.default    
     
 # Misc
 PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
+    com.android.future.usb.accessory \
+    dexpreopt
 
 # Hardware properties 
 PRODUCT_COPY_FILES += \
@@ -103,12 +99,12 @@ PRODUCT_COPY_FILES += \
     
 # OMX
 PRODUCT_COPY_FILES += \
-    device/htc/pico/prebuilt/lib/libmm-adspsvc.so:system/lib/libmm-adspsvc.so \
+    vendor/htc/pico/proprietary/lib/libmm-adspsvc.so:system/lib/libmm-adspsvc.so \
     vendor/htc/pico/proprietary/lib/libmmosal.so:system/lib/libmmosal.so \
     vendor/htc/pico/proprietary/lib/libmmparser.so:system/lib/libmmparser.so \
-    device/htc/pico/prebuilt/lib/libOmxH264Dec.so:system/lib/libOmxH264Dec.so \
-    device/htc/pico/prebuilt/lib/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \
-    device/htc/pico/prebuilt/lib/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \
+    vendor/htc/pico/proprietary/lib/libOmxH264Dec.so:system/lib/libOmxH264Dec.so \
+    vendor/htc/pico/proprietary/lib/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \
+    vendor/htc/pico/proprietary/lib/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \
     vendor/htc/pico/proprietary/lib/libmmparser_divxdrmlib.so:system/lib/libmmparser_divxdrmlib.so \
     vendor/htc/pico/proprietary/lib/libdivxdrmdecrypt.so:system/lib/libdivxdrmdecrypt.so
     
@@ -119,8 +115,8 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 
 # Publish that we support the live wallpaper feature.
 PRODUCT_COPY_FILES += \
-    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
- 
+    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml 
+    
 PRODUCT_PACKAGES += \
     LiveWallpapers \
     LiveWallpapersPicker \
@@ -128,12 +124,12 @@ PRODUCT_PACKAGES += \
     librs_jni
 
 # Releasetools
-PRODUCT_COPY_FILES += \
-     device/htc/pico/releasetools/extras.sh:system/bin/extras.sh
+# PRODUCT_COPY_FILES += \
+#     device/htc/pico/releasetools/extras.sh:system/bin/extras.sh
 
 # Vold 
 PRODUCT_COPY_FILES += \
-    device/htc/pico/files/etc/vold.fstab:system/etc/vold.fstab
+    device/htc/pico/files/etc/vold.fstab:system/etc/vold.fstab \
     
 # Wifi
 PRODUCT_COPY_FILES += \
@@ -142,7 +138,6 @@ PRODUCT_COPY_FILES += \
     device/htc/pico/prebuilt/etc/firmware/fw_bcm4330_p2p_b2.bin:system/etc/firmware/fw_bcm4330_p2p_b2.bin \
     device/htc/pico/files/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     device/htc/pico/files/etc/dhcpd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    device/htc/pico/files/etc/wifi/hostapd.conf:system/etc/wifi/hostapd.conf
     
 # Audio
 PRODUCT_COPY_FILES += \
@@ -153,13 +148,15 @@ PRODUCT_COPY_FILES += \
     device/htc/pico/prebuilt/etc/AudioPreProcess.csv:system/etc/AudioPreProcess.csv \
     device/htc/pico/prebuilt/etc/AudioFilter_HP.csv:system/etc/AudioFilter_HP.csv \
     vendor/htc/pico/proprietary/lib/libaudioeq.so:system/lib/libaudioeq.so \
-    vendor/htc/pico/proprietary/lib/libhtc_acoustic.so:system/lib/libhtc_acoustic.so
+    vendor/htc/pico/proprietary/lib/libhtc_acoustic.so:system/lib/libhtc_acoustic.so \
+    device/htc/pico/prebuilt/audio.primary.msm7x27a.so:system/lib/hw/audio.primary.msm7x27a.so \
+    device/htc/pico/prebuilt/audio.primary.msm7x27a.so:system/lib/hw/audio.primary.msm7x27a.so
 
 # Sensors
 PRODUCT_COPY_FILES += \
-    vendor/htc/pico/proprietary/lib/hw/sensors.pico.so:system/lib/hw/sensors.pico.so \
+    vendor/htc/pico/proprietary/lib/hw/sensors.pico.so:system/lib/hw/sensors.pico.so
 
-# 3D(Early JB Blobs)
+# 3D(ICS Blobs)
 PRODUCT_COPY_FILES += \
     vendor/htc/pico/proprietary/etc/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
     vendor/htc/pico/proprietary/etc/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw \
@@ -175,13 +172,14 @@ PRODUCT_COPY_FILES += \
     vendor/htc/pico/proprietary/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
     vendor/htc/pico/proprietary/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
     vendor/htc/pico/proprietary/lib/egl/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \
-    vendor/htc/pico/proprietary/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so
-
+    vendor/htc/pico/proprietary/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so 
+    
+    
 # RIL
 PRODUCT_COPY_FILES += \
-    device/htc/pico/prebuilt/lib/libhtc_ril.so:system/lib/libhtc_ril.so \
-    device/htc/pico/prebuilt/lib/libqc-opt.so:system/lib/libqc-opt.so
-    
+    vendor/htc/pico/proprietary/lib/libhtc_ril.so:system/lib/libhtc_ril.so \
+    vendor/htc/pico/proprietary/lib/libqc-opt.so:system/lib/libqc-opt.so
+
 # Audio DSP Profiles
 PRODUCT_COPY_FILES += \
     device/htc/pico/prebuilt/etc/soundimage/srs_global.cfg:system/etc/soundimage/srs_global.cfg \
@@ -194,7 +192,7 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
-    vendor/htc/pico/proprietary/etc/firmware/BCM4330B1_002.001.003.0221.0228.hcd:system/etc/firmware/BCM4330B1_002.001.003.0221.0228.hcd
+    vendor/htc/pico/proprietary/etc/firmware/BCM4330B1_002.001.003.0221.0228.hcd:system/etc/firmware/BCM4330B1_002.001.003.0221.0228.hcd \
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -213,15 +211,19 @@ PRODUCT_COPY_FILES += \
     device/htc/pico/prebuilt/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl
     
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.product.camera=pico \
     ro.com.google.locationfeatures=1 \
     ro.com.google.networklocation=1 \
-    ro.com.google.gmsversion=2.3_r3 \
-    dalvik.vm.lockprof.threshold=500 \
+    ro.com.google.gmsversion=2.3_r6 \
     ro.setupwizard.enable_bypass=1 \
+    dalvik.vm.lockprof.threshold=500 \
+    dalvik.vm.dexopt-flags=m=y \
     ro.telephony.call_ring.multiple=false \
-    persist.sys.use_dithering=2 \
-    ro.vold.umsdirtyratio=50
-
+    ro.vold.umsdirtyratio=40 \
+    ro.config.ringtone=CyanTone.ogg \
+    ro.config.notification_sound=CyanPing.ogg \
+    ro.config.alarm_alert=Hassium.ogg    
+    
 PRODUCT_AAPT_CONFIG := normal mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+PRODUCT_TAGS += dalvik.gc.type-precise
